@@ -1,0 +1,449 @@
+Lista de palavras paroxítonas acentuadas
+afável (a-fá-vel)
+ágil (á-gil)
+amável (a-má-vel)
+amigável (a-mi-gá-vel)
+automóvel (au-to-mó-vel)
+cível (cí-vel)
+confiável (con-fi-á-vel)
+cônsul (côn-sul)
+desagradável (de-sa-gra-dá-vel)
+destróier (des-trói-er)
+difícil (di-fí-cil)
+dócil (dó-cil)
+dúctil (dúc-til)
+estéril (es-té-ril)
+fácil (fá-cil)
+fértil (fér-til)
+fóssil (fós-sil)
+frágil (frá-gil)
+hábil (há-bil)
+imóvel (i-mó-vel)
+incrível (in-crí-vel)
+indelével (in-de-lé-vel)
+insolúvel (in-so-lú-vel)
+insustentável (in-sus-ten-tá-vel)
+intolerável (in-to-le-rá-vel)
+inútil (i-nú-til)
+lamentável (la-men-tá-vel)
+lavável (la-vá-vel)
+míssil (mís-sil)
+níquel (ní-quel)
+pênsil (pên-sil)
+possível (pos-sí-vel)
+réptil (rép-til)
+responsável (res-pon-sá-vel)
+saudável (sau-dá-vel)
+tátil (tá-til)
+têxtil (têx-til)
+túnel (tú-nel)
+útil (ú-til)
+variável (va-ri-á-vel)
+visível (vi-sí-vel)
+açúcar (a-çú-car)
+aljôfar (al-jô-far)
+almíscar (al-mís-car)
+âmbar (âm-bar)
+cadáver (ca-dá-ver)
+câncer (cân-cer)
+caráter (ca-rá-ter)
+díspar (dís-par)
+dólar (dó-lar)
+éter (é-ter)
+fêmur (fê-mur)
+flúor (flú-or)
+ímpar (ím-par)
+lêmur (lê-mur)
+mártir (már-tir)
+néctar (néc-tar)
+nenúfar (ne-nú-far)
+pulôver (pu-lô-ver)
+repórter (re-pór-ter)
+revólver (re-vól-ver)
+vômer (vô-mer)
+zíper (zí-per)
+abdômen (ab-dô-men)
+albúmen (al-bú-men)
+alúmen (a-lú-men)
+ânus (â-nus)
+cânon (câ-non)
+cólon (có-lon)
+dólmen (dól-men)
+éden (é-den)
+elétron (e-lé-tron)
+gérmen (gér-men)
+glúten (glú-ten)
+hífen (hí-fen)
+hímen (hí-men)
+líquen (lí-quen)
+lúmen (lú-men)
+mórmon (mór-mon)
+nêutron (nêu-tron)
+plâncton (plânc-ton)
+pólen (pó-len)
+próton (pró-ton)
+sêmen (sê-men)
+xênon (xê-non)
+bômbax (bôm-bax)
+bômbix (bôm-bix)
+cálix (cá-lix)
+clímax (clí-max)
+córtex (cór-tex)
+dúplex (dú-plex)
+fênix (fê-nix)
+hélix (hé-lix)
+índex (ín-dex)
+látex (lá-tex)
+ônix (ô-nix)
+sílex (sí-lex)
+táxi (tá-xi)
+tórax (tó-rax)
+acórdão (a-cór-dão)
+bênção (bên-ção)
+côvão (cô-vão)
+ímã (í-mã)
+órfã (ór-fã)
+órfão (ór-fão)
+órgão (ór-gão)
+sótão (só-tão)
+zângão (zân-gão)
+álbum (ál-bum)
+fórum (fó-rum)
+bônus (bô-nus)
+câmpus (câm-pus)
+húmus (hú-mus)
+ônus (ô-nus)
+tônus (tô-nus)
+Vênus (Vê-nus)
+vírus (ví-rus)
+beribéri (be-ri-bé-ri)
+dândi (dân-di)
+júri (jú-ri)
+bílis (bí-lis)
+gônis (gô-nis)
+íris (í-ris)
+lápis (lá-pis)
+miosótis (mi-o-só-tis)
+oásis (o-á-sis)
+pênis (pê-nis)
+práxis (prá-xis)
+tênis (tê-nis)
+hóquei (hó-quei)
+jóquei (jó-quei)
+pônei (pô-nei)
+bíceps (bí-ceps)
+fórceps (fór-ceps)
+tríceps (trí-ceps)
+água (á-gua)
+língua (lín-gua)
+longínquo (lon-gín-quo)
+míngua (mín-gua)
+oblíquo (o-blí-quo)
+régua (ré-gua)
+balaústre (ba-la-ús-tre)
+cafeína (ca-fe-í-na)
+ciúme (ci-ú-me)
+egoísta (e-go-ís-ta)
+faísca (fa-ís-ca)
+guaíba (gua-í-ba)
+heroína (he-ro-í-na)
+juízo (ju-í-zo)
+peúga (pe-ú-ga)
+saída (sa-í-da)
+saúde (sa-ú-de)
+saúva (sa-ú-va)
+viúvo (vi-ú-vo)
+Lista de palavras paroxítonas não acentuadas
+abençoo
+abraço
+acerto
+acordo
+acrobacia
+ajuda
+alcaloide
+alcateia
+aldeia
+alicate
+amigo
+amizade
+apoia
+apoio
+aracnoide
+assembleia
+asteroide
+atitude
+azeitona
+aziago
+baiuca
+bala
+baleia
+barco
+bata
+bloco
+bocaiuva
+boia
+boina
+boleia
+bolso
+boneca
+brinco
+brinquedo
+broche
+cabelo
+cadeia
+cadeira
+camelo
+camisa
+carro
+casinha
+cerca
+chave
+cheia
+chuva
+ciclope
+cidade
+colmeia
+comboio
+contribuinte
+convidado
+coro
+corpo
+creem
+cromossomo
+deem
+deste
+desvalido
+desvario
+dezoito
+engraçado
+enjoo
+enrolado
+epopeico
+equino
+erudito
+escola
+esquisito
+estreia
+estroina
+europeia
+fantasia
+feiura
+felicidade
+filantropo
+fisioterapia
+fogo
+fora
+frase
+gato
+geladeira
+geleia
+glicemia
+grampo
+grave
+heroico
+homem
+ideia
+introito
+item
+janela
+jiboia
+joia
+jovem
+leem
+leito
+libido
+lingueta
+magoo
+manada
+meia
+menino
+mesa
+metade
+modem
+multa
+multiplicidade
+nematoide
+nuvem
+odisseia
+onomatopeico
+ordem
+ovos
+paleozoico
+pano
+paradoxo
+paranoia
+paranoico
+parasitoide
+perdoo
+pezinho
+piloto
+plateia
+pomada
+pote
+povoo
+preveem
+proteico
+pudico
+quiromancia
+rapidamente
+rato
+recorde
+rubrica
+seca
+sequestro
+serpente
+sintaxe
+sistema
+tainha
+tampa
+taquicardia
+terço
+tinta
+tinteiro
+tomada
+tramoia
+tranquilo
+tulipa
+ureia
+vaso
+veem
+vizinho
+voo
+zebra
+Lista de paroxítonas terminadas em ditongo:
+
+aéreo
+alívio
+ambulância
+angústia
+ânsia
+anúncio
+aparência
+aquário
+árduo
+área
+arrogância
+auxílio
+benefício
+búzio
+calúnia
+cárie
+cemitério
+cerimônia
+colégio
+comentário
+comércio
+consciência
+consequência
+contágio
+contrário
+convívio
+cópia
+critério
+decadência
+deficiência
+diário
+distância
+distúrbio
+domínio
+dúzia
+edifício
+eficácia
+escritório
+espécie
+essência
+estratégia
+estúdio
+experiência
+família
+farmácia
+fascínio
+fêmea
+férias
+frequência
+funcionário
+fúria
+gênio
+glória
+história
+horário
+ignorância
+império
+importância
+imundície
+incêndio
+indivíduo
+infância
+influência
+ingênuo
+início
+insônia
+instantâneo
+inteligência
+intempérie
+laboratório
+lírio
+literário
+mágoa
+malícia
+matéria
+memória
+miséria
+mistério
+múmia
+murmúrio
+necessário
+negligência
+negócio
+névoa
+nódoa
+notícia
+obrigatório
+óbvio
+ócio
+óleo
+operário
+paciência
+petróleo
+polícia
+potência
+prédio
+prefácio
+preferência
+presídio
+presságio
+princípio
+privilégio
+próprio
+provérbio
+provisório
+prudência
+raciocínio
+rádio
+relatório
+relógio
+remédio
+residência
+sábio
+salário
+sandália
+secundário
+série
+sério
+silêncio
+sítio
+sócio
+solitário
+substância
+subúrbio
+telescópio
+temporário
+tendência
+tênue
+tragédia
+urgência
+usuário
+vácuo
+violência
+vitória
+vocabulário
