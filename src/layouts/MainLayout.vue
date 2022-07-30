@@ -285,7 +285,6 @@ export default {
 			this.$refs.linksWarning.abrirModal()
 		},
 		getLinksTip() {
-			debugger
 			this.$refs.showLinks.abrirModal(this.game.getLinksTip())
 		},
 		saveGame() {
