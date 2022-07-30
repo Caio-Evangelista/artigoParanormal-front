@@ -1,8 +1,9 @@
 <template>
 	<q-dialog v-model="modal" persistent>
 		<q-card class="q-px-md" style="min-width: 50vw">
-			<q-card-section class="row items-center justify-center q-pb-none">
-				<div class="text-h6">Qual é o título deste Artigo?</div>
+			<q-card-section class="text-center q-pb-none">
+				<div class="text-h6 text-bold">Qual é o título deste Artigo?</div>
+				<div class="text-grey-5">Selecione uma das opções abaixo e clique em confirmar.</div>
 			</q-card-section>
 
 			<q-card-section class="q-gutter-y-md q-px-xl q-pt-lg">

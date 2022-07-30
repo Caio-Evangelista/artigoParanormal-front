@@ -35,21 +35,6 @@
 
 							<q-item clickable v-close-popup @click="onItemClick" :disable="true">
 								<q-item-section avatar>
-									<q-avatar icon="fas fa-link" color="primary" text-color="white" />
-								</q-item-section>
-								<q-item-section>
-									<q-item-label>Links Aleatórios</q-item-label>
-								</q-item-section>
-								<q-item-section side>
-									<div>
-										???
-										<q-icon class="q-px-xs" name="fas fa-coins" color="white" size="sm" />
-									</div>
-								</q-item-section>
-							</q-item>
-
-							<q-item clickable v-close-popup @click="onItemClick" :disable="true">
-								<q-item-section avatar>
 									<q-avatar icon="fas fa-image" color="primary" text-color="white" />
 								</q-item-section>
 								<q-item-section class="q-pr-md">
@@ -79,8 +64,22 @@
 							</q-item>
 
 							<q-separator />
+							<q-item clickable v-close-popup @click="confirmLinks">
+								<q-item-section avatar>
+									<q-avatar icon="fas fa-link" color="primary" text-color="white" />
+								</q-item-section>
+								<q-item-section>
+									<q-item-label>Links Aleatórios</q-item-label>
+								</q-item-section>
+								<q-item-section side>
+									<div>
+										100
+										<q-icon class="q-px-xs" name="fas fa-coins" color="white" size="sm" />
+									</div>
+								</q-item-section>
+							</q-item>
 
-							<q-item clickable v-close-popup @click="getAlternativesTip">
+							<q-item clickable v-close-popup @click="confirmAlternatives">
 								<q-item-section avatar>
 									<q-avatar icon="fas fa-list" color="primary" text-color="white" />
 								</q-item-section>
@@ -89,7 +88,7 @@
 								</q-item-section>
 								<q-item-section side>
 									<div>
-										200
+										250
 										<q-icon class="q-px-xs" name="fas fa-coins" color="white" size="sm" />
 									</div>
 								</q-item-section>
@@ -132,7 +131,27 @@
 			<q-toolbar>
 				<q-toolbar-title class="q-pa-sm">
 					<div class="row justify-between">
-						<q-btn icon="fas fa-cog" color="white" no-caps flat />
+						<q-btn-dropdown icon="fas fa-cog" color="white" no-caps flat>
+							<q-list class="text-body1">
+								<q-item clickable v-close-popup @click="openHelpModal">
+									<q-item-section avatar>
+										<q-avatar icon="fas fa-question" color="primary" text-color="white" />
+									</q-item-section>
+									<q-item-section>
+										<q-item-label>Como jogar</q-item-label>
+									</q-item-section>
+								</q-item>
+
+								<q-item clickable v-close-popup @click="confirmGiveUp" class="text-white-negative">
+									<q-item-section avatar>
+										<q-avatar icon="fas fa-font-awesome" color="negative" text-color="white" />
+									</q-item-section>
+									<q-item-section class="q-pr-md">
+										<q-item-label>Desistir</q-item-label>
+									</q-item-section>
+								</q-item>
+							</q-list>
+						</q-btn-dropdown>
 						<q-space />
 						<div class="text-center" v-if="game.gameStatus && game.gameStatus.showArticle">
 							<div class="text-h6" v-if="game.gameStatus && game.gameStatus.winner">Parabéns, você venceu!</div>
@@ -170,6 +189,12 @@
 		<winner-model ref="winnerModel" :game="game" />
 
 		<give-up-warning ref="giveUpWarning" @confirm="giveUp" />
+		<alternatives-warning ref="alternativesWarning" @confirm="getAlternativesTip" />
+		<links-warning ref="linksWarning" @confirm="getLinksTip" />
+
+		<show-links ref="showLinks" />
+
+		<modal-help ref="modalHelp" />
 	</q-layout>
 </template>
 
@@ -180,8 +205,12 @@ import createGame from 'src/Controller/Game'
 import ChoiceOptions from 'src/components/ChoiceOptions.vue'
 import WinnerModel from 'src/components/WinnerModel.vue'
 import GiveUpWarning from 'src/components/warning/GiveUpWarning.vue'
+import AlternativesWarning from 'src/components/warning/AlternativesWarning.vue'
+import LinksWarning from 'src/components/warning/LinksWarning.vue'
+import ShowLinks from 'src/components/ShowLinks.vue'
+import ModalHelp from 'src/components/configs/ModalHelp.vue'
 export default {
-	components: { ChoiceOptions, WinnerModel, GiveUpWarning },
+	components: { ChoiceOptions, WinnerModel, GiveUpWarning, AlternativesWarning, LinksWarning, ShowLinks, ModalHelp },
 	name: 'MainLayout',
 	data() {
 		return {
@@ -196,7 +225,8 @@ export default {
 	},
 	computed: {
 		...mapGetters({
-			getDailyArticle: 'getDailyArticle'
+			getDailyArticle: 'getDailyArticle',
+			getOldGames: 'getOldGames'
 		})
 	},
 	methods: {
@@ -233,6 +263,9 @@ export default {
 			this.$q.notify({ message: 'A resposta certa era ' + this.game.article.article.title, type: 'positive', position: 'top' })
 			this.endGame()
 		},
+		confirmAlternatives() {
+			this.$refs.alternativesWarning.abrirModal()
+		},
 		getAlternativesTip() {
 			const options = this.game.getAlternativesTip()
 			if (typeof options == 'string') {
@@ -247,6 +280,13 @@ export default {
 			this.game.chooseAlternativesTip(fullName)
 			this.update++
 			this.endGame()
+		},
+		confirmLinks() {
+			this.$refs.linksWarning.abrirModal()
+		},
+		getLinksTip() {
+			debugger
+			this.$refs.showLinks.abrirModal(this.game.getLinksTip())
 		},
 		saveGame() {
 			this.$store.commit('saveDailyGame', this.game.exportGame())
@@ -267,6 +307,9 @@ export default {
 					points: this.game.points.data.points
 				})
 			}
+		},
+		openHelpModal() {
+			this.$refs.modalHelp.abrirModal()
 		}
 	},
 	async created() {
@@ -279,6 +322,8 @@ export default {
 		} catch (error) {
 			console.log(error)
 		}
+
+		if (this.getOldGames.qtdGames == 0) this.openHelpModal()
 
 		this.saveGame()
 	}

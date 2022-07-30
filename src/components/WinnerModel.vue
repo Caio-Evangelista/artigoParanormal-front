@@ -46,7 +46,7 @@
 				</q-card>
 				<q-card class="no-shadow col-3">
 					<q-card-section class="text-center">
-						<div class="text-h4 text-bold">{{ (((this.getOldGames.qtdGames - this.getOldGames.qtdGiveUp) * 100) / this.getOldGames.qtdGames).toFixed(0) }}%</div>
+						<div class="text-h4 text-bold">{{ (((this.getOldGames.qtdGames - this.getOldGames.qtdGiveUp - this.getOldGames.qtdErrors) * 100) / this.getOldGames.qtdGames).toFixed(0) }}%</div>
 						<div class="">de vitórias</div>
 					</q-card-section>
 				</q-card>

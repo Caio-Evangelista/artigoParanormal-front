@@ -13,9 +13,6 @@ function controllPoints(article) {
 		tipPoints: 200,
 		coinsPoints: 100,
 
-		qtdWords: 0,
-		qtdTip: 0,
-
 		textWinGame: '',
 		textWordsPoints: '',
 		textTipPoints: '',
@@ -31,25 +28,17 @@ function controllPoints(article) {
 
 		coinsOfOneWord += cont ? article.article.words[word] : 0
 	}
-	coinsOfOneWord = 5000 / coinsOfOneWord
+	coinsOfOneWord = 3000 / coinsOfOneWord
 
-	function controlOfPointsOfGuessWord(quantity) {
-		controller.qtdWords++
-
-		data.coins += Math.floor((quantity - 1) * coinsOfOneWord)
+	function controlOfPointsOfGuessWord(quantity, guessedWords) {
+		data.coins += Math.floor(quantity * coinsOfOneWord)
 		if (data.coins < 0) data.coins = 0
-
-		managePoints()
 	}
 	function controlOfPointsOfTip(cust) {
 		if (data.coins < cust) return 'Saldo Insuficiente'
-
-		controller.qtdTip++
 		data.coins -= cust
-
-		managePoints()
 	}
-	function managePoints(winGame = false) {
+	function managePoints(guessedWords, usedTips, winGame = false) {
 		const configWordsPoints = [
 			[200, 50],
 			[150, 100],
@@ -60,11 +49,14 @@ function controllPoints(article) {
 		]
 		controller.textWordsPoints = ''
 		for (let config of configWordsPoints) {
-			if (controller.qtdWords <= config[0]) {
+			if (guessedWords.length <= config[0]) {
 				controller.wordsPoints = config[1]
 				controller.textWordsPoints = `+ ${config[1]}pts por usar até ${config[0]} palavras.`
 			}
 		}
+
+		let qtdTip = 0
+		for (let tip of Object.keys(usedTips)) qtdTip += usedTips[tip]
 
 		const configTipPoints = [
 			[3, 50],
@@ -74,7 +66,7 @@ function controllPoints(article) {
 		]
 		controller.textTipPoints = ''
 		for (let config of configTipPoints) {
-			if (controller.qtdTip <= config[0]) {
+			if (qtdTip <= config[0]) {
 				controller.tipPoints = config[1]
 				controller.textTipPoints = `+ ${config[1]}pts por usar ${config[0]} dicas.`
 			}

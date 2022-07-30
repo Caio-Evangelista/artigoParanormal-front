@@ -14,6 +14,13 @@ async function createGame(configs = 'daily') {
 		showArticle: false,
 		end: false
 	}
+	const usedTips = {
+		tips: 0,
+		links: 0,
+		images: 0,
+		Wordle: 0,
+		alternatives: 0
+	}
 
 	function getVisibleText() {
 		return article.getVisibleText(guessedWords, gameStatus.showArticle)
@@ -48,7 +55,7 @@ async function createGame(configs = 'daily') {
 		let quantity = article.article.words[stemmingGuess] || 0
 		realGuessedWords.unshift({ word, quantity })
 
-		points.controlOfPointsOfGuessWord(quantity)
+		points.controlOfPointsOfGuessWord(quantity, guessedWords)
 
 		checkWinner()
 
@@ -67,7 +74,7 @@ async function createGame(configs = 'daily') {
 		gameStatus.winner = true
 		gameStatus.showArticle = true
 
-		points.managePoints(true)
+		points.managePoints(guessedWords, usedTips, true)
 	}
 
 	function giveUp() {
@@ -92,19 +99,46 @@ async function createGame(configs = 'daily') {
 			}
 			index++
 		}
-		return points.controlOfPointsOfTip(200) || options
+		let notCoins = points.controlOfPointsOfTip(250)
+		if (notCoins) return notCoins
+
+		usedTips.alternatives++
+		return options
 	}
 	function chooseAlternativesTip(choice) {
 		if (choice == article.article.title) {
 			gameStatus.winner = true
 			gameStatus.giveUp = false
 			gameStatus.showArticle = true
+			points.managePoints(guessedWords, usedTips, true)
 		} else {
 			gameStatus.winner = false
 			gameStatus.giveUp = false
 			gameStatus.showArticle = true
+			points.managePoints(guessedWords, usedTips, false)
 		}
-		points.managePoints(true)
+	}
+	function getLinksTip() {
+		let options = shuffle(article.article.links)
+
+		let notCoins = points.controlOfPointsOfTip(100)
+		if (notCoins) return notCoins
+
+		usedTips.links++
+		return options.slice(0, 4)
+	}
+
+	function shuffle(array) {
+		let currentIndex = array.length,
+			randomIndex
+
+		while (currentIndex != 0) {
+			randomIndex = Math.floor(Math.random() * currentIndex)
+			currentIndex--
+			;[array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]]
+		}
+
+		return array
 	}
 
 	function endGame() {
@@ -151,6 +185,7 @@ async function createGame(configs = 'daily') {
 		giveUp,
 		getAlternativesTip,
 		chooseAlternativesTip,
+		getLinksTip,
 		endGame,
 		exportGame,
 		importGame

@@ -24,14 +24,18 @@ async function createArticle(configs) {
 		if (showArticle) return article.originalText
 
 		const regexNoGetTagsHML = />([^<]*)</gim
-		const regexGetWordsOnly = /([^\s0123456789,.\-+()'"!@#$%^&*\/\\|<>[\]{}ºª]*)/gim
+		const regexGetWordsOnly = /([^\s0123456789,.\-+()'"“”!@#$%^&*\/\\|<>[\]{}ºª]*)/gim
 		return article.originalText.replace(regexNoGetTagsHML, (_, phase) => {
 			return '>' + phase.replace(regexGetWordsOnly, (_, word) => hideWord(word, guessedWords)) + '<'
 		})
 	}
 
 	function hideWord(word, guessedWords) {
-		return isWordVisible(word, guessedWords) ? word : '██████████████████████████████████████████████████'.slice(0, word.length)
+		if (!isWordVisible(word, guessedWords)) return '██████████████████████████████████████████████████'.slice(0, word.length)
+
+		if (isLestGuess(word, guessedWords)) return `<span class="bg-white-positive text-dark text-weight-medium">${word}</span>`
+
+		return word
 	}
 
 	function isWordVisible(word, guessedWords = []) {
@@ -40,6 +44,15 @@ async function createArticle(configs) {
 		if (StopWords.indexOf(word) >= 0) return true
 
 		if (guessedWords.indexOf(stemming(word)) >= 0) return true
+
+		return false
+	}
+
+	function isLestGuess(word, guessedWords = []) {
+		word = word.trim().toLowerCase()
+		if (StopWords.indexOf(word) >= 0) return false
+
+		if (guessedWords[0] == stemming(word)) return true
 
 		return false
 	}
