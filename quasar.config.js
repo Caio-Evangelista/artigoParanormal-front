@@ -138,9 +138,9 @@ module.exports = configure(function (ctx) {
 			},
 
 			manifest: {
-				name: `Quasar App`,
-				short_name: `Quasar App`,
-				description: `A Quasar Project`,
+				name: `Artigo Paranormal`,
+				short_name: `Artigo Paranormal`,
+				description: `O jogo Artigo mas de Ordem Paranormal`,
 				display: 'standalone',
 				orientation: 'portrait',
 				background_color: '#ffffff',

@@ -3,7 +3,7 @@
 		<q-header elevated class="bg-primary text-white">
 			<q-toolbar>
 				<q-toolbar-title>
-					Artigo Paranormal <q-chip class="q-px-sm" dense>#1</q-chip>
+					Artigo Paranormal <q-chip class="q-px-sm" dense>#2</q-chip>
 					<q-chip class="q-px-sm" color="negative" dense> ✱ beta</q-chip>
 				</q-toolbar-title>
 
@@ -23,7 +23,8 @@
 									<q-avatar icon="fas fa-lightbulb" color="primary" text-color="white" />
 								</q-item-section>
 								<q-item-section>
-									<q-item-label>Dica</q-item-label>
+									<q-item-label class="text-weight-medium">Dica</q-item-label>
+									<q-item-label caption class="text-grey-6">Recebe uma dica escrita relacionada ao Artigo</q-item-label>
 								</q-item-section>
 								<q-item-section side>
 									<div>
@@ -38,7 +39,8 @@
 									<q-avatar icon="fas fa-image" color="primary" text-color="white" />
 								</q-item-section>
 								<q-item-section class="q-pr-md">
-									<q-item-label>Imagem Aleatória</q-item-label>
+									<q-item-label class="text-weight-medium">Imagem Aleatória</q-item-label>
+									<q-item-label caption class="text-grey-6">Veja uma imagem que está vinculada a este Artigo</q-item-label>
 								</q-item-section>
 								<q-item-section side>
 									<div>
@@ -53,7 +55,8 @@
 									<q-avatar icon="fas fa-w" color="primary" text-color="white" />
 								</q-item-section>
 								<q-item-section>
-									<q-item-label>Descubra Título</q-item-label>
+									<q-item-label class="text-weight-medium">Adivinhe o Título</q-item-label>
+									<q-item-label caption class="text-grey-6">Jogue Termo/Wordle com o título do Artigo</q-item-label>
 								</q-item-section>
 								<q-item-section side>
 									<div>
@@ -69,7 +72,8 @@
 									<q-avatar icon="fas fa-link" color="primary" text-color="white" />
 								</q-item-section>
 								<q-item-section>
-									<q-item-label>Links Aleatórios</q-item-label>
+									<q-item-label class="text-weight-medium">Links Aleatórios</q-item-label>
+									<q-item-label caption class="text-grey-6">Abra 4 páginas da wiki vinculadas a este Artigo</q-item-label>
 								</q-item-section>
 								<q-item-section side>
 									<div>
@@ -84,7 +88,8 @@
 									<q-avatar icon="fas fa-list" color="primary" text-color="white" />
 								</q-item-section>
 								<q-item-section class="q-pr-md">
-									<q-item-label>Alternativas</q-item-label>
+									<q-item-label class="text-weight-medium">Alternativas</q-item-label>
+									<q-item-label caption class="text-grey-6">Escolha o título do Artigo entre 5 opções</q-item-label>
 								</q-item-section>
 								<q-item-section side>
 									<div>
@@ -99,7 +104,7 @@
 									<q-avatar icon="fas fa-font-awesome" color="negative" text-color="white" />
 								</q-item-section>
 								<q-item-section class="q-pr-md">
-									<q-item-label>Desistir</q-item-label>
+									<q-item-label class="text-weight-medium">Desistir</q-item-label>
 								</q-item-section>
 							</q-item>
 						</q-list>
@@ -142,7 +147,7 @@
 									</q-item-section>
 								</q-item>
 
-								<q-item clickable v-close-popup @click="confirmGiveUp" class="text-white-negative">
+								<q-item clickable v-close-popup @click="confirmGiveUp" class="text-white-negative" v-if="game.gameStatus && game.gameStatus.showArticle">
 									<q-item-section avatar>
 										<q-avatar icon="fas fa-font-awesome" color="negative" text-color="white" />
 									</q-item-section>
@@ -285,7 +290,14 @@ export default {
 			this.$refs.linksWarning.abrirModal()
 		},
 		getLinksTip() {
-			this.$refs.showLinks.abrirModal(this.game.getLinksTip())
+			const links = this.game.getLinksTip()
+			if (typeof links == 'string') {
+				this.$q.notify({ message: links, type: 'negative', position: 'top' })
+				return
+			}
+
+			this.$refs.showLinks.abrirModal(links)
+			this.update++
 		},
 		saveGame() {
 			this.$store.commit('saveDailyGame', this.game.exportGame())
@@ -309,13 +321,16 @@ export default {
 		},
 		openHelpModal() {
 			this.$refs.modalHelp.abrirModal()
+		},
+		sowMessage(message) {
+			this.$q.notify({ message })
 		}
 	},
 	async created() {
 		this.$q.dark.set(true)
 
 		try {
-			this.game = await createGame()
+			this.game = await createGame(this.sowMessage)
 			this.game.importGame(this.getDailyArticle)
 			this.verifyWin()
 		} catch (error) {

@@ -3,7 +3,7 @@ import createArticle from './Articles'
 import StopWords from 'src/resource/StopWords.json'
 import controllPoints from './Points'
 
-async function createGame(configs = 'daily') {
+async function createGame(sowMessage, configs = 'daily') {
 	const article = await createArticle(configs)
 	const points = controllPoints(article)
 	const guessedWords = []
@@ -18,8 +18,13 @@ async function createGame(configs = 'daily') {
 		tips: 0,
 		links: 0,
 		images: 0,
-		Wordle: 0,
+		wordle: 0,
 		alternatives: 0
+	}
+	const sendMessagesTips = {
+		needTip1: false,
+		needTip2: false,
+		needAlternatives: false
 	}
 
 	function getVisibleText() {
@@ -55,9 +60,12 @@ async function createGame(configs = 'daily') {
 		let quantity = article.article.words[stemmingGuess] || 0
 		realGuessedWords.unshift({ word, quantity })
 
+		console.log(guessedWords)
+
 		points.controlOfPointsOfGuessWord(quantity, guessedWords)
 
 		checkWinner()
+		checkNeedTip()
 
 		return {}
 	}
@@ -75,6 +83,31 @@ async function createGame(configs = 'daily') {
 		gameStatus.showArticle = true
 
 		points.managePoints(guessedWords, usedTips, true)
+	}
+
+	function checkNeedTip() {
+		let haveUseTips = usedTips.tips + usedTips.links + usedTips.images
+		if (!sendMessagesTips.needTip1 && realGuessedWords.filter((el) => el.quantity == 0).length > 25) {
+			sendMessagesTips.needTip1 = true
+			sowMessage('Para entender melhor o contexto, você pode utilizar suas moedas e ganhar umas dicas!')
+			return
+		}
+		if (!sendMessagesTips.needTip2 && realGuessedWords.filter((el) => el.quantity == 0).length > 80) {
+			sendMessagesTips.needTip1 = true
+			sowMessage(`Você tem certeza que não precisa comprar ${haveUseTips ? 'outra' : 'alguma'} dica?`)
+			return
+		}
+
+		if (!sendMessagesTips.needAlternatives) {
+			for (const word of article.article.title.split(' ')) {
+				if (article.isWordVisible(word, guessedWords) && [...guessedWords].splice(0, guessedWords.indexOf(stemming(word.trim().toLowerCase()))).length >= 8) {
+					sowMessage(`Se você não lembra ou não sabe como se escreve o resto do títilo do artigo, mas tem alguma ideia do que se refere, então você pode comprar as alternativas!`)
+					return
+				}
+			}
+		}
+
+		sendMessagesTips
 	}
 
 	function giveUp() {

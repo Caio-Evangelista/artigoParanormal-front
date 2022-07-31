@@ -3,15 +3,15 @@
 		<q-card class="q-px-md" style="min-width: 50vw">
 			<q-card-section class="row items-top justify-between q-pb-none">
 				<q-space />
-				<div class="text-center" v-if="this.game.gameStatus.winner">
+				<div class="text-center text-white-positive" v-if="this.game.gameStatus.winner">
 					<div class="text-h6">Parabéns,</div>
 					<div class="text-h4">Você Venceu!</div>
 				</div>
-				<div class="text-center" v-else-if="this.game.gameStatus.giveUp">
+				<div class="text-center text-white-negative" v-else-if="this.game.gameStatus.giveUp">
 					<div class="text-h6">Que pena,</div>
 					<div class="text-h4">Você Desistiu!</div>
 				</div>
-				<div class="text-center" v-else>
+				<div class="text-center text-white-negative" v-else>
 					<div class="text-h6">Que pena,</div>
 					<div class="text-h4">Você Errou!</div>
 				</div>

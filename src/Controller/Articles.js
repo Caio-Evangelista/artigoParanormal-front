@@ -10,7 +10,7 @@ async function createArticle(configs) {
 	async function getArticle(configs) {
 		let data
 		try {
-			data = await api.get('https://artigoparanormal.herokuapp.com/')
+			data = await api.get('http://localhost:3000' /*'https://artigoparanormal.herokuapp.com/'*/)
 		} catch (er) {
 			console.log(er)
 
